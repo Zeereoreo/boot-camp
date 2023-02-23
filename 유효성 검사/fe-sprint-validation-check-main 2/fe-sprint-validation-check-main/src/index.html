@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>유효성 검사</title>
+    <link rel="stylesheet" href="global-style.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="validator.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <main>
+      <img
+        class="logo"
+        src="./images/cyworldmain.jpg"
+        alt="CODE_STATES_LOGO"
+      />
+
+      <fieldset>
+        <input type="text" id="username" placeholder="아이디" />
+      </fieldset>
+
+      <div class="success-message hide">사용할 수 있는 아이디입니다</div>
+      <div class="failure-message hide">올바른 이메일 형식을 사용해 주세요.</div>
+      <!-- <div class="failure-message hide">네 글자 이상 입력해주세요.</div> -->
+      <fieldset>
+        <input type="password" id="password" placeholder="비밀번호" />
+      </fieldset>
+
+      <fieldset>
+        <input
+          type="password"
+          id="password-retype"
+          placeholder="비밀번호 확인"
+        />
+      </fieldset>
+
+      <div class="mismatch-message hide">비밀번호가 일치하지 않습니다</div>
+
+      <fieldset class="signup">
+        <button disabled>
+          <span class="transition"></span>
+          <!-- <span class="gradient"></span> -->
+          <span class="label">회원가입</span>
+          
+        </button>
+        
+      </fieldset>
+
+      <fieldset class="icon">
+        <img class="google" src="./images/google.png"/>
+        <img class="naver"src="./images/naver.png" />
+        <img class="kakao"src="./images/kakao.png"/>
+      </fieldset>
+      <div class="outer">
+        <div class="inner-list">
+          <div class="inner">
+            <img src="./images/cyworldbanner1.jpg" />
+          </div>
+          <div class="inner">
+            <img src="./images/cyworldbanner2.png" />
+          </div>
+          <div class="inner">
+            <img src="./images/cyworldbanner3.png" />
+          </div>
+        </div>
+      </div>
+      
+      <script src="script.js"></script>
+    </main>
+  </body>
+</html>
