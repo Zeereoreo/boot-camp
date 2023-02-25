@@ -1,8 +1,14 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { removeFromCart, setQuantity } from '../actions';
 import CartItem from '../components/CartItem'
 import OrderSummary from '../components/OrderSummary'
 
-export default function ShoppingCart({ items, cartItems, setCartItems }) {
+export default function ShoppingCart() {
+
+  const state = useSelector(state => state.itemReducer);
+  const { cartItems, items } = state
+  const dispatch = useDispatch();
   const [checkedItems, setCheckedItems] = useState(cartItems.map((el) => el.itemId))
 
   const handleCheckChange = (checked, id) => {
@@ -24,22 +30,12 @@ export default function ShoppingCart({ items, cartItems, setCartItems }) {
   };
 
   const handleQuantityChange = (quantity, itemId) => {
-    //아이디가 일치하는 요소부터 찾아서 quantityr값 바꿔주기
-    cartItems.map((el) => {
-      if(el.itemId === itemId){
-        return {
-          "itemId": itemId,
-          "quantity": quantity
-        } 
-      } else {
-        return el
-      }
-    })
+    //TODO: dispatch 함수를 호출하여 액션을 전달하세요.
   }
 
   const handleDelete = (itemId) => {
     setCheckedItems(checkedItems.filter((el) => el !== itemId))
-    setCartItems(cartItems.filter((el)=>el.itemId !== itemId))
+    //TODO: dispatch 함수를 호출하여 액션을 전달하세요.
   }
 
   const getTotal = () => {

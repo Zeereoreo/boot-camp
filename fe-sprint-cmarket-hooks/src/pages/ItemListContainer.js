@@ -2,17 +2,14 @@ import React from 'react';
 import Item from '../components/Item';
 
 function ItemListContainer({ items, cartItems, setCartItems }) {
-  const handleClick = (e, id) => {
-    let newCartItems={}
-    newCartItems.itemId= id;
-    newCartItems.Quantity= 1;
-    for(let i = 0; i<cartItems.length; i++){
-      if(cartItems[i].itemId === id){
-        setCartItems([...cartItems])
-        cartItems[i].Quantity++
-      } else{
-        setCartItems([...cartItems, newCartItems])
-      }
+  const handleClick = (itemId) => {
+    // 장바구니에 내가 추가하고 싶은 아이템이 있는지 없는지 체크
+    if(cartItems.find(el => el.itemId === itemId) === undefined){
+      // 없으면 장바구니에 추가하기!
+        setCartItems([...cartItems], {
+        "itemId": itemId,
+        "quantity": 1
+      });
     }
    }
   return (
