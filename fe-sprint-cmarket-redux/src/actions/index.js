@@ -21,7 +21,7 @@ export const removeFromCart = (itemId) => {
   return {
     type: REMOVE_FROM_CART,
     payload: {
-
+      itemId
     }
   }
 }
@@ -29,6 +29,10 @@ export const removeFromCart = (itemId) => {
 export const setQuantity = (itemId, quantity) => {
   return {
     type: SET_QUANTITY,
+    payload: {
+      quantity,
+      itemId
+    }
   }
 }
 
