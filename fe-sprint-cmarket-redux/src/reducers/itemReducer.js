@@ -27,7 +27,7 @@ const itemReducer = (state = initialState, action) => {
         ...state,
         cartItems: [...state.cartItems.slice(0,idx), action.payload, state.cartItems.slice(idx + 1)]
       }
-      break;
+      break; 
     default:
       return state;
   }
