@@ -11,7 +11,7 @@ import  Page08  from '../pages/Page08'
 
 const Main = ({idx}) => {
     return (
-        <div class="main">
+        <main>
             { idx === 1 ? <Page01 />
             : idx === 2 ? <Page02 />
             : idx === 3 ? <Page03 />
@@ -21,7 +21,7 @@ const Main = ({idx}) => {
             : idx === 7 ? <Page07 />
             : idx === 8 ? <Page08 />
             : <Page00 />}
-        </div>
+        </main>
     )
 }
 
