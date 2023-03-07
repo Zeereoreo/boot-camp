@@ -144,7 +144,17 @@ const Page06 = () => {
                 </li>
                 <li>
                     scope 속성 사용
-                    <table></table>
+                    <table>
+                        <caption>바밤바 시리즈 정리</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">이름</th>
+                                <th scope="col">당류</th>
+                                <th scope="col">내용량</th>
+                                <th scope="col">칼로리</th>
+                            </tr>
+                        </thead>
+                    </table>
                 </li>
                 <li>
                     id, headers 속성 사용
