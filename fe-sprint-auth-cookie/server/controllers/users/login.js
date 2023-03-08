@@ -6,8 +6,6 @@ module.exports = (req, res) => {
   const userInfo = {
     ...USER_DATA.filter((user) => user.userId === userId && user.password === password)[0],
   };
-  console.log(req.body)
-  console.log(userInfo)
   /*
    * TODO: 로그인 로직을 구현하세요.
    *
@@ -22,22 +20,5 @@ module.exports = (req, res) => {
    * 클라이언트에게 바로 응답을 보내지않고 서버의 /useinfo로 리다이렉트해야 합니다.
    * express의 res.redirect 메서드를 참고하여 서버의 /userinfo로 리다이렉트 될 수 있도록 구현하세요.
    */
-  const loginRequestHandler = () => {
 
-    if (!loginInfo.userId || !loginInfo.password) {
-          setErrorMessage('아이디와 비밀번호를 입력하세요')
-          // 입력되지 않은 값이 있는거니까 요청을 보내볼 필요도 없이 바로 리턴해줍니다.
-          return;
-
-    }
-    // 테스트 케이스에 맞춰서 코드를 작성해줍니다.  
-    if (userInfo.id === undefined) {
-	  res.status(401).send('Not Authorized')
-}
-    return axios
-    .post("http://localhost:4000/login", {loginInfo, checkedKeepLogin})
-    
-  
-    
-  }
 };
