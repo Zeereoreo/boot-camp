@@ -10,7 +10,8 @@ module.exports = async (req, res) => {
   const userInfo = {
     ...USER_DATA.filter((user) => user.userId === userId && user.password === password)[0],
   };
-
+  console.log(userInfo)
+  
   /*
    * TODO: 로그인 로직을 구현하세요.
    *
@@ -28,4 +29,28 @@ module.exports = async (req, res) => {
    * 클라이언트에게 바로 응답을 보내지않고 서버의 /useinfo로 리다이렉트해야 합니다.
    * express의 res.redirect 메서드를 참고하여 서버의 /userinfo로 리다이렉트 될 수 있도록 구현하세요.
    */
+  if (!userInfo.id) {
+    res.status(401).send('Not Authorized');
+  }
+  const { accessToken, refreshToken } = generateToken(userInfo, checkedKeepLogin);
+
+  if (refreshToken) {
+    res.cookie('refresh_jwt', refreshToken, {
+      domain: 'localhost',
+      path: '/',
+      sameSite: 'none',
+      httpOnly: true,
+      secure: true,
+      expires: new Date(Date.now() + 24 * 3600 * 1000 * 7), // 7일 후 소멸되는 Persistent Cookie
+    });
+  }
+  res.cookie('access_jwt', accessToken, {
+    domain: 'localhost',
+    path: '/',
+    sameSite: 'none',
+    httpOnly: true,
+    secure: true,
+    // Expires 옵션이 없는 Session Cookie
+  });
+  return res.redirect('/userinfo');
 };
