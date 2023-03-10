@@ -7,7 +7,7 @@ const Header = () => {
 const HeaderLine = styled.div`
     display : flex;
     justify-content : flex-start;
-    align-items: center;
+    align-items: center; 
 `;    
 return (
     <HeaderLine>   
