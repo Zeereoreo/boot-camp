@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
     })
     .then((res) => res.data)
     .then((githubUserData) => {
-      res.send({ githubUserData, serverResource });
+      res.send({ githubUserData, serverResource }); //클라이언트로 다시 보내는게 13번
     })
     .catch((e) => {
       res.sendStatus(403);

@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
   try {
     const result = await axios({
       method: 'post',
-      url: `https://github.com/login/oauth/access_token`,
+      url: `https://github.com/login/oauth/access_token`,  // 6번 흐름
       headers: {
         accept: 'application/json',
       },
@@ -20,9 +20,9 @@ module.exports = async (req, res) => {
         code: req.body.authorizationCode,
       },
     });
-    const accessToken = result.data.access_token;
+    const accessToken = result.data.access_token; // 7번 흐름
 
-    return res.status(200).send({ accessToken });
+    return res.status(200).send({ accessToken }); //  받아오는 건 7번, 보내주는 건 8번 흐름
   } catch (err) {
     return res.status(401).send({ message: 'error' });
   }
