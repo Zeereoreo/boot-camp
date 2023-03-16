@@ -11,7 +11,7 @@ const MainArea = styled.div`
   width: 100%;
   /* overflow: hidden; */
   padding: 128px 0px 0 0px;
-  overflow: scroll;
+  overflow: auto;
 `;
 
 const Header = styled.div`
@@ -34,6 +34,7 @@ const FlexContainer = styled.div`
   > div {
     display: flex;
     flex-direction: column;
+    max-width: 230px;
     margin: 0 20px;
   }
    ul {
@@ -94,3 +95,4 @@ const Render = () => {
 };
 
 export default Render;
+
