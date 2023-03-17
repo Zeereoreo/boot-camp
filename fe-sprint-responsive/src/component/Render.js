@@ -1,17 +1,20 @@
 import styled from 'styled-components';
 import '../App.css';
+import Footer from './Footer'
 
 const MainArea = styled.div`
   /* background-image: url('https://i.pinimg.com/564x/25/2a/85/252a8531ff0b79234be74178758db6da.jpg');
   background-repeat: no-repeat;
   background-position: bottom; */
 
-  max-height: 864px;
+  /* max-height: 864px; */
   height: 100vh;
   width: 100%;
-  /* overflow: hidden; */
-  padding: 128px 0px 0 0px;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 `;
 
 const Header = styled.div`
@@ -36,6 +39,7 @@ const FlexContainer = styled.div`
     flex-direction: column;
     max-width: 230px;
     margin: 0 20px;
+    user-select: none;
   }
    ul {
     display: flex;
@@ -56,9 +60,11 @@ const FlexContainer = styled.div`
    }
 `
 
+
 const Render = () => {
   return (
     <>
+      
       <MainArea>
         <Header className='header'>
           <h1>ChatGPT</h1>
@@ -89,6 +95,7 @@ const Render = () => {
             </ul>
           </div>
         </FlexContainer>
+        <Footer />
       </MainArea>
     </>
   );
