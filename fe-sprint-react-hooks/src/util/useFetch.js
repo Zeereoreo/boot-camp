@@ -8,7 +8,10 @@ const useFetch = (url) => {
 
   useEffect(() => {
     setTimeout(() => {
-      fetch(url)
+      fetch(url,  {
+        headers : {"Content-Type" : "application/json"},
+        Accept : "application/json"
+      })
       .then(res => {
         if (!res.ok) {
           throw Error('could not fetch the data for that resource');
@@ -25,7 +28,7 @@ const useFetch = (url) => {
         setError(err.message);
       })
     }, 1000);
-  }, [])
+  }, [url])
   /* useFetch 안의 중심 로직을 작성해주세요. */
 
   return [blogs, isPending, error]/* return 문을 작성해주세요. */
