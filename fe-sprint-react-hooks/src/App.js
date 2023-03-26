@@ -1,6 +1,4 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Navbar from './component/Navbar';
-import Footer from './component/Footer';
 import { useEffect, useState, Suspense, lazy } from 'react';
 import useFetch from './util/useFetch'
 /* react.lazy()와 suspense를 사용해 App 컴포넌트를 리팩토링 해보세요. */
@@ -8,6 +6,8 @@ const Home = lazy(()=> import('./Home'))
 const CreateBlog = lazy(()=> import('./blogComponent/CreateBlog'))
 const BlogDetails = lazy(()=> import('./blogComponent/BlogDetail'))
 const NotFound = lazy(()=> import('./component/NotFound'))
+const Navbar = lazy(()=> import('./component/Navbar'))
+const Footer = lazy(()=> import('./component/Footer'))
 
 
 function App() {
@@ -44,18 +44,18 @@ function App() {
     <BrowserRouter>
       { error && <div>{ error }</div> }
         <div className="app">
+          <Suspense fallback={<div>거의 다 됐어요~</div>}>
           <Navbar />
           <div className="content">
-          <Suspense fallback={<div>거의 다 됐어요~</div>}>
             <Routes>
               <Route exact path="/" element={<Home blogs={blogs} isPending={isPending} />} />
               <Route path="/create" element={<CreateBlog />} />
               <Route path="/blogs/:id" element={<BlogDetails />} />
               <Route path="/blogs/:id" element={<NotFound />} />
             </Routes>
-          </Suspense>  
           </div>
           <Footer/>
+          </Suspense>  
         </div>
     </BrowserRouter>
   );
