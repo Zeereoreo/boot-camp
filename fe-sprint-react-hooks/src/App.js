@@ -40,7 +40,7 @@ function App() {
   //   }, 1000);
   // }, [])
 
-  return (
+  return ( 
     <BrowserRouter>
       { error && <div>{ error }</div> }
         <div className="app">
