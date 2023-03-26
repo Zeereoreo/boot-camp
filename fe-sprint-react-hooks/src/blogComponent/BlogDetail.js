@@ -3,13 +3,13 @@ import{ useNavigate, useParams } from "react-router-dom";
 import useFetch from '.././util/useFetch';
 const BlogDetails = () => {
   // const [blog, setBlog] = useState(null);
-  // const [isPending, setIsPending] = useState(true);
-  // const [error, setError] = useState(null);
+  const [isPending, setIsPending] = useState(true);
+  const [error, setError] = useState(null);
   const [isLike, setIsLike] = useState(true);
 
   const {id} = useParams();
   const navigate = useNavigate();
-  const [blog, isPending, error] = useFetch(`http://localhost:3001/blogs/${id}`)
+  const [blog] = useFetch(`http://localhost:3001/blogs/${id}`)
   /* 현재는 개별 블로그 내용으로 진입해도 내용이 보이지 않습니다. */
   /* useParams와 id를 이용하여 개별 블로그의 내용이 보일 수 있게 해봅시다. */
   // useEffect(() => {
@@ -39,6 +39,24 @@ const BlogDetails = () => {
   const handleDeleteClick = () => {
     /* delete 버튼을 누르면 다시 home으로 리다이렉트 되어야 합니다. */
     /* useNavigate()를 이용하여 handleDeleteClick 로직을 작성해주세요. */
+    fetch(`http://localhost:3001/blogs/${id}`) //${id}
+      method : "DELETE"
+      .then(res => {
+        if (!res.ok) {
+          throw Error('could not fetch the data for that resource');
+        } 
+        return res.json();
+      })
+      .then(data => {
+        setIsPending(false);
+        setError(null);
+        navigate ('/')
+        navigate(0);
+      })
+      .catch(err => {
+        setIsPending(false);
+        setError(err.message);
+      })
      navigate ('/')
      console.log(navigate)
     console.log('delete!');

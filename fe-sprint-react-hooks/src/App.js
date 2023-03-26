@@ -11,7 +11,7 @@ const Footer = lazy(()=> import('./component/Footer'))
 
 
 function App() {
-  const [blogs, isPending, error] = useFetch('http://localhost:3001/blogs/')
+  const [blogs, isPending, error] = useFetch('http://localhost:3001/blogs')
   // const [blogs, setBlogs] = useState(null);
   // const [isPending, setIsPending] = useState(true);
   // const [error, setError] = useState(null);
@@ -43,8 +43,8 @@ function App() {
   return ( 
     <BrowserRouter>
       { error && <div>{ error }</div> }
-        <div className="app">
           <Suspense fallback={<div>거의 다 됐어요~</div>}>
+        <div className="app">
           <Navbar />
           <div className="content">
             <Routes>
@@ -55,8 +55,8 @@ function App() {
             </Routes>
           </div>
           <Footer/>
-          </Suspense>  
         </div>
+          </Suspense>  
     </BrowserRouter>
   );
 }

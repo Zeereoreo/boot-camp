@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 const CreateBlog = () => {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
+    const [error, setError] = useState(null)
+    const [isPending, setIsPending] = useState(true);
     const [author, setAuthor] = useState('김코딩');
     const navigate = useNavigate();
     const data = {title, body, author, likes : 0}
@@ -12,11 +14,13 @@ const CreateBlog = () => {
         e.preventDefault();
         /* 등록 버튼을 누르면 게시물이 등록이 되며 home으로 리다이렉트 되어야 합니다. */
         /* 작성한 내용과 useNavigate를 이용하여 handleSubmit의 로직을 작성해보세요. */
-       console.log(e.type);
-      
+      const data = {title, body, author, likes : 0}
+
       fetch('http://localhost:3001/blogs/', {
         method: "POST",
-        headers : {"Content-Type" : "application/json"},
+        headers : {"Content-Type" : "application/json",
+        Accept:"application/json"
+        },
         body: JSON.stringify(data)
       }) 
       .then(res => {
@@ -26,7 +30,10 @@ const CreateBlog = () => {
         return res.json();
       })
       .then(() => {
+        setIsPending(false)
+        setError(null)
         navigate('/')
+        navigate(0)
       })
       .catch(err => {
         console.log('err',err)
