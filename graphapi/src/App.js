@@ -4,11 +4,7 @@ import { useEffect, useState } from 'react';
 
 let token = `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`
 
-const graphqlWithAuth = graphql.defaults({
-  headers: {
-    authorization: `token ${token}`,
-  },
-});
+
 
 async function Graphrepo  (){
     const { repository, viewer } = await graphqlWithAuth(
