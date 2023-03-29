@@ -3,26 +3,31 @@ import { graphql } from "@octokit/graphql";
 import { useEffect, useState } from 'react';
 
 let token = `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`
-
-
+  
 
 async function Graphrepo  (){
+   const graphqlWithAuth = graphql.defaults({
+    headers: {
+      authorization: `token ${token}`,
+    },
+  }); 
+  
     const { repository, viewer } = await graphqlWithAuth(
       `
       {
         repository(owner: "codestates-seb", name: "agora-states-fe") {
-          discussions(first : 3) {
+          discussions(first: 3) {
             edges {
               node {
                 id
                 title
-                createdAt
+                createdAt 
                 url
                 author {
                   login
                   avatarUrl
                 }
-             }
+              }
             }
           }
         }
@@ -32,7 +37,7 @@ async function Graphrepo  (){
       }
       `
     );
-    return {repository,viewer}
+    return { repository, viewer}
 }
   
 function App() {
@@ -50,13 +55,17 @@ function App() {
     }) 
   },[])
 
+  console.log(repository);
+  console.log(viewer);
+ 
+
   return (
     <div className="App">
       <header className="App-header">
         <button >콘솔</button>
       </header>
     </div>
-  );
+  ); 
 }
 
 export default App;
