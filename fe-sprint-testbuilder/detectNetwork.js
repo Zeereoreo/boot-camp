@@ -19,6 +19,31 @@ function detectNetwork(cardNumber) {
    * 이 글을 읽으셨다면, detectNetwork함수가 'Diner's Club', 'American Express'를
    * 정확히 검사할 수 있도록 만들고 브라우저 console 화면으로 돌아가세요.
    */
+  // if(cardNumber.slice(0,2) === '38' || '39' && cardNumber.length === 14){
+  //   return `Diner's Club`;
+  // } if(cardNumber.slice(0,2) === '34' || '37' && cardNumber.length === 15){
+  //   return `American Express`;
+  // } if(cardNumber.slice(0,1) === '4' && cardNumber.length === 13 || cardNumber.length ===16 ||cardNumber.length === 19){
+  //   return `Visa`;
+  // } if(cardNumber.slice(0,2) === '51' ||cardNumber.slice(0,2) === '52' ||cardNumber.slice(0,2) === '53' ||cardNumber.slice(0,2) === '54'||cardNumber.slice(0,2) ==='55' && cardNumber.length === 16){
+  //   return `MasterCard`;
+  // }
+  let test = cardNumber.slice(0,2)
+  let testDiscover = cardNumber.slice(0,4)
+  let Discovers = cardNumber.slice(0,3)
+
+  if((test === '38'||'39')&&(cardNumber.length===14)){
+    return `Diner's Club`;
+  } if((test === '34'||'37')&&(cardNumber.length===15)){
+    return 'American Express';
+  } if((test[0] === '4')&&(cardNumber.length=== 13 || cardNumber.length===16 || cardNumber.length===19)){
+    return 'Visa';
+  } if((test === '51'|| test ==='52'|| test ==='53'|| test ==='54'|| test ==='55')&&(cardNumber.length===16)){
+    return 'MasterCard';
+  }
+  if((testDiscover === '6011'|| test === '65'|| Discovers >= 644 || Discovers <=649) && (cardNumber.length===16 || cardNumber.length===19)){
+    return "Discover"
+  }
 }
 
 // you don't have to worry about this code. keep this code.
