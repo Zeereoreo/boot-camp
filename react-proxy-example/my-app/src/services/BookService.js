@@ -1,4 +1,3 @@
-
 export const getAllBooks = async () => {
 
     const response = await fetch('/api/books');
