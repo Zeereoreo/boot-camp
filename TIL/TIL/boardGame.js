@@ -101,7 +101,7 @@ function boardGame(board, operation) {
 //     Y += dY;
 //     X += dX;
 //     if (isValid(Y, X) === false) return 'OUT';
-//     score += board[Y][X];
+//     score += board[Y][X]; 
 //   }
 //   return score;
 // };
