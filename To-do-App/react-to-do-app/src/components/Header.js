@@ -12,7 +12,7 @@ const HeaderLine = styled.div`
 return (
     <HeaderLine>   
         <ImMenu className="icon-button" />
-        <h1>매일 작심삼일</h1>
+        <h1>매일 작심일일</h1>
         <ImCalendar className="icon-button"/>
     </HeaderLine>
     );

@@ -1,64 +1,46 @@
+import React, { Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useEffect, useState, Suspense, lazy } from 'react';
-import useFetch from './util/useFetch'
-/* react.lazy()와 suspense를 사용해 App 컴포넌트를 리팩토링 해보세요. */
-const Home = lazy(()=> import('./Home'))
-const CreateBlog = lazy(()=> import('./blogComponent/CreateBlog'))
-const BlogDetails = lazy(()=> import('./blogComponent/BlogDetail'))
-const NotFound = lazy(()=> import('./component/NotFound'))
-const Navbar = lazy(()=> import('./component/Navbar'))
-const Footer = lazy(()=> import('./component/Footer'))
+import useFetch from './util/useFetch';
+import useScrollTop from './util/useScrollTop';
+/* 자신이 판단했을 때 굳이 dynamic import를 사용하지 않아도 된다면, static import로 가져와도 무방합니다. */
+import Navbar from './component/Navbar';
+import Footer from './component/Footer';
+
+/* react.lazy()와 suspense를 사용해 보세요. */
+const Home = React.lazy(() => import("./Home"));
+const CreateBlog = React.lazy(() => import('./blogComponent/CreateBlog'));
+const BlogDetails = React.lazy(() => import('./blogComponent/BlogDetail'));
+const NotFound = React.lazy(() => import('./component/NotFound'));
+const Loading = React.lazy(() => import('./component/Loading'));
 
 
 function App() {
-  const [blogs, isPending, error] = useFetch('http://localhost:3001/blogs')
-  // const [blogs, setBlogs] = useState(null);
-  // const [isPending, setIsPending] = useState(true);
-  // const [error, setError] = useState(null);
+  
+    const [blogs, isPending, error] = useFetch("http://localhost:3001/blogs/");
 
-  // /* get 메소드를 통해 데이터를 받아오는 useEffect hook은 컴포넌트 내 여기저기 존재하고 있습니다. */
-  // /* 해당 hook은 반복이 되는 부분이 있으므로 어떻게 custom hook으로 만들 수 있을지 고민해 봅시다. */
-  // /* util 폴더 내에 존재하는 useFetch에 custom hook을 작성해 주세요. */
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     fetch('http://localhost:3001/blogs')
-  //     .then(res => {
-  //       if (!res.ok) {
-  //         throw Error('could not fetch the data for that resource');
-  //       } 
-  //       return res.json();
-  //     })
-  //     .then(data => {
-  //       setIsPending(false);
-  //       setBlogs(data);
-  //       setError(null);
-  //     })
-  //     .catch(err => {
-  //       setIsPending(false);
-  //       setError(err.message);
-  //     })
-  //   }, 1000);
-  // }, [])
+    //advanced
+    useScrollTop();
 
-  return ( 
-    <BrowserRouter>
-      { error && <div>{ error }</div> }
-          <Suspense fallback={<div>거의 다 됐어요~</div>}>
-        <div className="app">
-          <Navbar />
-          <div className="content">
-            <Routes>
-              <Route exact path="/" element={<Home blogs={blogs} isPending={isPending} />} />
-              <Route path="/create" element={<CreateBlog />} />
-              <Route path="/blogs/:id" element={<BlogDetails />} />
-              <Route path="/blogs/:id" element={<NotFound />} />
-            </Routes>
-          </div>
-          <Footer/>
-        </div>
-          </Suspense>  
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            { error && <div>{ error }</div> }
+                <div className="app">
+                    <Navbar />
+                    <Suspense fallback={<Loading/>}>
+                        <div className="content">
+                            <Routes>
+                                <Route exact path="/" element={<Home blogs={blogs} isPending={isPending} />} />
+                                <Route path="/create" element={<CreateBlog blogs={blogs} />} />
+                                <Route path="/blogs/:id" element={<BlogDetails />} />
+                                {/* 이렇게 path에 *(와일드카드)를 넣으면 매치되는 URL이 없을 때 해당 컴포넌트를 보여줍니다. */}
+                                <Route path="*" element={<NotFound />} />
+                            </Routes>
+                        </div>
+                    </Suspense>
+                    <Footer/>
+                </div>
+        </BrowserRouter>
+    )
 }
 
 export default App;
