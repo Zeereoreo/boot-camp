@@ -1,4 +1,6 @@
 import React from "react";
+import Showtodolist from './Showtodolist';
+import Todoshome from './Todoshome'
 
 const Todoinsert = ({onChangeForm,handleSubmit}) => {
 
@@ -8,32 +10,16 @@ const Todoinsert = ({onChangeForm,handleSubmit}) => {
             <div className="todo-form">
                 <form>
                     <div className="input-group">
-                        <label>Todo</label>
+                        <label>작심추가</label>
                         <input 
                             type="text"
                             onChange={(e)=> onChangeForm(e)}
                             name="todo"
                         />
                     </div>
-                    <div className="input-group">
-                        <label>category</label>
-                        <input 
-                            type="text"
-                            onChange={(e)=> onChangeForm(e)}
-                            name="category"
-                        />
-                    </div>
-                    <div className="input-group">
-                        <label>isComplete</label>
-                        <input 
-                            type="text"
-                            onChange={(e)=> onChangeForm(e)}
-                            name="isComplete"
-                        />
-                    </div>
                     <button
                         className="start-button"
-                        onClick={()=> handleSubmit()}>작심일일 START</button>
+                        onClick={()=> handleSubmit()}>Add</button>
                 </form>
             </div>
         </div>

@@ -1,18 +1,43 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import Header from './components/Header';
 import Nav from './components/Nav';
 import Template from './components/Template';
 import Todoinsert from './components/Todoinsert';
-import Showtodolist from './components/Showtodolist';
+import Todoshome from './components/Todoshome';
 import Item from './components/Item';
+import useFetch from './util/useFetch';
+
+
+
 
 function App() {
+
   const [createTodo, setCreateTodo] = useState({});
   const [numberTodos, setNumberTodos] = useState(0);
-  const [todoList, setTodoList] = useState([]);
+  const [todoData, setTodoData] = useState([
+    {
+      "id": 1,
+      "todo": "강아지 산책",
+      "category": "할 일",
+      "isComlete": true
+    },
+    {
+      "id": 2,
+      "todo": "방 청소",
+      "category": "할 일",
+      "isComlete": true
+    },
+    {
+      "id": 3,
+      "todo": "이불 개기",
+      "category": "할 일",
+      "isComlete": true
+    }
+  ]);
 
 
+  
   const handleSubmit = () => {
     setCreateTodo(createTodo)
       .then(() => {
@@ -20,15 +45,15 @@ function App() {
     });
 }
 
+  const handleDelete = () => {
+
+  }
+
   const onChangeForm = (e) => {
     let inputData = createTodo;
     if (e.target.name === 'todo') {
       createTodo.todo = e.target.value;
-    } else if (e.target.name === 'category') {
-      createTodo.category = e.target.value;
-    } else if (e.target.name === 'isComplete') {
-      createTodo.isComplete = e.target.value;
-    }
+    } 
     setCreateTodo(inputData);
 }
 
@@ -36,11 +61,9 @@ function App() {
     <>
       <Header />
         <Nav />
-          <Template />
-          <Todoinsert handleSubmit={handleSubmit}
+          <Template handleSubmit={handleSubmit}
           onChangeForm={onChangeForm}
-          createTodo={createTodo}/>
-          <Showtodolist todoList={todoList} />
+          todoData={todoData}/>
           <Item/>
     </>
   )

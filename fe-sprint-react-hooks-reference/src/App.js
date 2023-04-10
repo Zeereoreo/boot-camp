@@ -16,7 +16,7 @@ const Loading = React.lazy(() => import('./component/Loading'));
 
 function App() {
   
-    const [blogs, isPending, error] = useFetch("http://localhost:3001/blogs/");
+    const [blogs, isPending, error] = useFetch("http://localhost:3003/blogs/");
 
     //advanced
     useScrollTop();
