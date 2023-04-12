@@ -1,26 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import Todoinsert from './Todoinsert';
-import Showtodolist from './Showtodolist';
+
 
 const TodoTemplateWrap = styled.div`
     width: 512px;
     height: 768px;
 
     position: relative;
-    background-color: gray;
+    background-color: #393E46;
     border-radius: 13px;
 `
 
 
-const Template = (todoData) => {
+const Template = ({children}) => {
  
 
-return (
-    <div className="todolist-template-wraper">
-        <Todoinsert></Todoinsert>
-        <Showtodolist></Showtodolist>
-    </div>
-)
+return <TodoTemplateWrap>{children}</TodoTemplateWrap>
+
 }
 export default Template;
