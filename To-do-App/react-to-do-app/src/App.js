@@ -4,14 +4,15 @@ import Header from './components/Header';
 import Nav from './components/Nav';
 import Template from './components/Template';
 import TodoHead from './components/TodoHead';
-import Item from './components/Item';
 import Showtodolist from './components/Showtodolist';
+import Todoinsert from './components/Todoinsert';
 import { createGlobalStyle } from 'styled-components';
 
 
 
 
 function App() {
+
 
   const GlobalStyle = createGlobalStyle`
     body {
@@ -27,8 +28,8 @@ function App() {
           <Template >
           <TodoHead />
           <Showtodolist/>
+          <Todoinsert/>
           </Template>
-          <Item/>
     </>
   )
 }

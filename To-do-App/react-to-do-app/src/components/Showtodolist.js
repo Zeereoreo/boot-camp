@@ -12,7 +12,7 @@ const Showtodolist = () => {
         {
           id: 1,
           todo: "강아지 산책",
-          isComlete: true
+          isComlete: false
         },
         {
           id: 2,
@@ -23,6 +23,11 @@ const Showtodolist = () => {
           id: 3,
           todo: "이불 개기",
           isComlete: true
+        },
+        {
+            id: 4,
+            todo: "물 먹기",
+            isComlete: false
         }
       ]
 
