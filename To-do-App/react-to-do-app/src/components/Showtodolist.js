@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Item from "./Item";
-import { getPosts } from './Api'
-// import useFetch from '../util/useFetch'
+
+
 
 const ShowtodolistWrap = styled.div`
     flex: 1;
@@ -11,7 +11,7 @@ const ShowtodolistWrap = styled.div`
 `
 
 
-const Showtodolist = () => {
+const Showtodolist = ({exampleList}) => {
     // const exampleList = [
     //     {
     //       id: 1,
@@ -35,16 +35,15 @@ const Showtodolist = () => {
     //     }
     //   ]
     // const [exampleList] = useFetch(`http://localhost:4000/todolist/`)
-    const [exampleList] = getPosts(`http://localhost:4000/todolist/`)
-
+    
 return(
     <ShowtodolistWrap>
-        {exampleList.map(todo => (
-            <Item   
-                key={todo.id}
-                id={todo.id}
-                todo={todo.todo}
-                isComlete={todo.isComlete}
+        {exampleList.map(todolist => (
+            <Item  
+                key={todolist.id}
+                id={todolist.id}
+                todo={todolist.todo}
+                isComlete={todolist.isComlete}
             />
         ))}
     </ShowtodolistWrap>
