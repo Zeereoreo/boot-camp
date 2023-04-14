@@ -37,16 +37,26 @@ const Showtodolist = ({exampleList}) => {
     // const [exampleList] = useFetch(`http://localhost:4000/todolist/`)
     
 return(
-    <ShowtodolistWrap>
-        {exampleList.map(todolist => (
-            <Item  
-                key={todolist.id}
-                id={todolist.id}
-                todo={todolist.todo}
-                isComlete={todolist.isComlete}
-            />
-        ))}
-    </ShowtodolistWrap>
+    // <ShowtodolistWrap>
+    //     {exampleList.map(todolist => (
+    //         <Item  
+    //             key={todolist.id}
+    //             id={todolist.id}
+    //             todo={todolist.todo}
+    //             isComlete={todolist.isComlete}
+    //         />
+    //     ))}
+    // </ShowtodolistWrap>
+    <div>
+    {exampleList.map(todolist => (
+        <div 
+            key={todolist.id}
+            id={todolist.id}
+            todo={todolist.todo}
+            isComlete={todolist.isComlete}
+        />
+    ))}
+    </div>
 )
 }
 
